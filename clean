@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo 'Removing exited containers and dangling images.'
+
+# Remove exited containers.
+docker rm $(docker ps --all --filter="status=exited" --quiet)
+
+# Remove dangling images.
+docker rmi $(docker images --filter="dangling=true" --quiet)
